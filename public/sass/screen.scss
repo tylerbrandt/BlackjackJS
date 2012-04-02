@@ -1,0 +1,84 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+#reset {
+	background-color: #228B22;
+	margin: auto;
+}
+
+#actions {
+	display: none;
+}
+
+li {
+	border: 1px solid black;
+	list-style-type: disc;
+
+	&.win {
+		list-style-image: url("/img/tick-sm.png");
+
+		.winner {
+			background-color: #C1FFC1;
+		}
+	}
+
+	&.lose {
+		list-style-type: circle;
+
+		.winner {
+			background-color: #8B0000;
+			color: white;
+		}
+	}
+
+	&.tie {
+		list-style: none;
+	}
+}
+
+.user {
+	background-color: #EEF3E2;
+}
+
+.dealer {
+	background-color: #FEF0C9;
+}
+
+#score {
+	clear: both;
+}
+
+/* Playing card sprite (img/playingcards.png): http://imageshack.us/photo/my-images/245/playingcards.png/ */;
+.card {
+	background: url("/img/playingcards.png") no-repeat;
+	float: left;
+	margin: 3px;
+
+	$width: 72px;
+	$height: 96px;
+	
+	// rank spacing
+	$gutter: 1px;
+	//
+	$suitSpacing: 8px;
+
+	$left: -38px;
+	$top: -11px;
+
+	height: $height;
+	width: $width;
+	background-position: $left $top;
+
+	@for $suit from 0 through 3 {
+		@for $rank from 0 through 12 {
+			&.cardValue-#{$suit+1}-#{$rank+1} {
+				background-position-x: $left - $rank * ($gutter + $width);
+				background-position-y: $top - $suit * ($suitSpacing + $height);
+			}
+		}
+	}
+}

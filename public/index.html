@@ -4,51 +4,7 @@
 		<title>Blackjack!</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="lib/mustache.js"></script>
-		<style>
-		#reset {
-			background-color: #228B22;
-			margin: auto;
-		}
-
-		#actions {
-			display: none;
-		}
-
-		li {
-			border: 1px solid black;
-		}
-
-		li.win {
-			list-style-image: url("img/tick-sm.png");
-		}
-
-		li.win .winner {
-			background-color: #C1FFC1;
-		}
-
-		li.lose {
-			list-style-type: circle;
-		}
-
-		li.lose .winner {
-			background-color: #8B0000;
-			color: white;
-		}
-
-		li.tie {
-			list-style: none;
-		}
-
-		.user {
-			background-color: #EEF3E2;
-		}
-
-		.dealer {
-			background-color: #FEF0C9;
-		}
-
-		/* Playing card sprite (img/playingcards.png): http://imageshack.us/photo/my-images/245/playingcards.png/ */;
-		</style>
+		<link rel="stylesheet" media="screen, projection" href="stylesheets/screen.css"/>
 	</head>
 	<body>
 		<div id="reset">
@@ -60,7 +16,10 @@
 			<button id="stay" class="play">Stay</button>
 			<button id="replay" class="replay">Play Again</button>
 		</div>
-		<div id="current_hand"></div>
+		<div id="current_hand">
+			<div id="cards"></div>
+			<div id="score"></div>
+		</div>
 		<ul id="hands"></ul>
 		<script src="blackjack.js"></script>
 	</body>
