@@ -1,6 +1,20 @@
 // Card Constructor
 function Card(suit, number) {
-    var mySuit = suit, myNumber = number;
+    var mySuit = suit, myNumber = number,
+        suits = {
+            1: "hearts",
+            2: "clubs",
+            3: "diamonds",
+            4: "spades"
+        }, suit = suits[mySuit],
+        ranks = {
+            // anything else just reports the number
+            1: "ace",
+            11: "jack",
+            12: "queen",
+            13: "king"
+        };
+
     this.getNumber = function() {
         return myNumber;
     };
@@ -19,19 +33,7 @@ function Card(suit, number) {
     };
     
     this.printCard = function() {
-        var suits = {
-                1: "hearts",
-                2: "clubs",
-                3: "diamonds",
-                4: "spades"
-            }, suit = suits[mySuit],
-            ranks = {
-                // anything else just reports the number
-                1: "ace",
-                11: "jack",
-                12: "queen",
-                13: "king"
-            }, rank = myNumber;
+        var rank = myNumber;
         if(ranks.hasOwnProperty(rank)) {
             rank = ranks[rank];
         }
