@@ -1,6 +1,20 @@
 // Card Constructor
 function Card(suit, number) {
-    var mySuit = suit, myNumber = number;
+    var mySuit = suit, myNumber = number,
+        suits = {
+                1: "clubs",
+                2: "spades",
+                3: "hearts",
+                4: "diamonds"
+            }, 
+            ranks = {
+                // anything else just reports the number
+                1: "ace",
+                11: "jack",
+                12: "queen",
+                13: "king"
+            };
+
     this.getNumber = function() {
         return myNumber;
     };
@@ -19,23 +33,15 @@ function Card(suit, number) {
     };
     
     this.printCard = function() {
-        var suits = {
-                1: "hearts",
-                2: "clubs",
-                3: "diamonds",
-                4: "spades"
-            }, suit = suits[mySuit],
-            ranks = {
-                // anything else just reports the number
-                1: "ace",
-                11: "jack",
-                12: "queen",
-                13: "king"
-            }, rank = myNumber;
+        var rank = myNumber, suit = suits[mySuit];
         if(ranks.hasOwnProperty(rank)) {
             rank = ranks[rank];
         }
         return rank + " of " + suit;
+    };
+
+    this.displayCard = function() {
+        return "<div class='card cardValue-" + mySuit + "-" + myNumber + "'></div>";
     };
 }
 
@@ -111,6 +117,13 @@ function Hand(deck) {
         return result;
         
     };
+
+    this.displayHand = function() {
+        var hand = cards.map(function(card) {
+            return card.displayCard();
+        });
+        return hand.join("");
+    };
     
     this.hitMe = function() {
         var newCard = myDeck.deal();
@@ -145,7 +158,10 @@ function Game() {
         if(state.phase === "user") {
             // user is playing
             $("#actions, #actions .play, #current_hand").show();
-            $("#current_hand").html(userHand.printHand());
+            $("#cards")
+                .html(userHand.displayHand());
+            $("#score")
+                .html(userHand.printHand());
             $("#actions .replay").hide();
         } else if(state.phase === "endHand") {
             // show results
@@ -163,7 +179,7 @@ function Game() {
                 }));
             $("#results").html(summary);
         } else if(state.phase === "newGame") {
-            $("#hands, #results, #current_hand").empty();
+            $("#hands, #results, #cards, #score").empty();
         }
     }
 
